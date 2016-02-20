@@ -1,0 +1,55 @@
+<div class="container">
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="col-md-8"><%= @category.title %></th>
+        <th class="col-md-2"><%= @category.quantity %></th>
+        <th class="col-md-2"><%= @category.price %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @category.options.each do |option| %>
+        <tr>
+          <td><%= option.title %></td>
+          <td><%= option.quantity %></td>
+          <td><%= option.price %></td>
+          <%= link_to 'Edit2', edit_category_option_path(@category, option) %> 
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  
+      <h4>Add options</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="col-md-6">Название</th>
+        <th class="col-md-2">Колличество</th>
+        <th class="col-md-2">Цена</th>
+        <th class="col-md-2">#</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= form_for([@category, @category.options.build]) do |f| %>
+        <tr>    
+          <td><%= f.text_field :title %></td> 
+          <td><%= f.text_field :quantity %></td>  
+          <td><%= f.text_field :price %></td>
+          <td><%= f.submit "Add Option", class: "btn btn-success" %></td>                
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+       
+        
+
+    
+    <br/>
+    <%= link_to 'Edit', edit_category_path(@category) %> |
+    <%= link_to 'Destroy', @category, method: :delete, data: { confirm: 'Are you sure?' } %> |
+ 
+  <%= link_to 'Back', categories_path %>
+          
+</div>

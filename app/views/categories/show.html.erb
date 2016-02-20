@@ -1,0 +1,38 @@
+<div class="container">  
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="col-md-8"><%= @category.title %></th>
+        <th class="col-md-2"><%= @category.quantity %></th>
+        <th class="col-md-2"><%= @category.price %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @category.options.each do |option| %>
+        <tr>
+          <td><%= option.title %></td>
+          <td><%= option.quantity %></td>
+          <td><%= option.price %><%= link_to 'Edit2', edit_category_option_path(@category, option) %> </td> 
+          
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= form_for([@category, @category.options.build]) do |f| %>
+    <%= f.text_field :title %>
+    <%= f.text_field :quantity %>
+    <%= f.text_field :price %>
+    <%= f.submit %>
+  <% end %>
+
+  <%= link_to 'Edit', edit_category_path(@category) %> |
+  <%= link_to 'Destroy', @category, method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <%= link_to 'Back', categories_path %>
+  
+ 
+     
+
+
+

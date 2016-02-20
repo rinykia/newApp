@@ -1,0 +1,4 @@
+var new_option = $("<%= escape_javascript(render(:partial => @option))%>").hide();
+$('#options').prepend(new_option);
+$('#option_<%= @option.id %>').fadeIn('slow');
+$('#new_option')[0].reset();
