@@ -1,2 +1,46 @@
 @import"bootstrap-sprockets";
 @import"bootstrap";
+
+small{
+  color: grey;
+}
+h3{
+  color: #8b8989;
+}
+
+.example2 {
+    display:inline-block;   
+    position:relative;
+
+    margin-right: -10px;
+ 
+}
+.example2 span {
+    display:inline-block;
+    position:absolute;
+    top:30%;   
+    left:30%;
+     
+    
+    color:#FFF;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:20px; 
+     
+   
+    background-color:rgba(0,0,0,.4);
+    padding:1% 7%;
+    border-radius: 10px;
+}
+
+.link {
+  color: white;
+}
+.link:hover{
+  text-decoration: none;
+  color: black;
+}
+.ex{
+  width: 265px;
+  height: 150px;
+  margin-top:10px;
+}

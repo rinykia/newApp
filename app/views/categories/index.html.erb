@@ -1,4 +1,11 @@
-<% @categories.each do |category| %>
-  <%= link_to category.title, category_path(category) %>
+<div class="container">
+  <% @categories.each do |category| %>
+    <div class="col-md-3 col-sm-6 col-xs-12 example2">    
+      <a href='/categories/<%= category.id %>'><img class="ex img-rounded" src="<%= category.image %>"></a>
+         <span class="text-center"><%= link_to category.title, category_path(category), class: "link" %></span>
+    </div>
 
-<% end %>
+  <% end %>
+</div>
+    
+  

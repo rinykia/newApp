@@ -8,6 +8,7 @@ class CategoriesController < ApplicationController
     @categories = Category.all
     @category = Category.find(params[:id])
     @options = @category.options
+    
   end
 
   def new
@@ -36,6 +37,7 @@ class CategoriesController < ApplicationController
   end
 
   def update
+    @category = Category.find(params[:id])
     respond_to do |format|
       if @category.update(category_params)
         format.html { redirect_to @category, notice: 'Post was successfully updated.' }
@@ -48,6 +50,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
+    @category = Category.find(params[:id])
     @category.destroy
     respond_to do |format|
       format.html { redirect_to categories_url, notice: 'Post was successfully destroyed.' }

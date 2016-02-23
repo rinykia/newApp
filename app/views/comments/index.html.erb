@@ -1,0 +1,35 @@
+<div class="container">
+  <h3 class="text-center">Оставить отзыв о ресторане</h3>
+  <form>
+    <%= form_for(@comment) do |f| %>
+      <div class="form-group">
+        <%= f.text_field :name, class: 'form-control input-sm', placeholder: 'Имя' %>
+      </div>
+      <div class="form-group">
+        <%= f.email_field :email, class: 'form-control input-sm', placeholder: 'Email (не публикуется)' %>
+      </div>
+      <div class="form-group">
+        <%= f.text_field :title, class: 'form-control input-sm', placeholder: 'Заголовок (не обязательно)' %>
+      </div>
+      <div class="form-group">
+        <%= f.text_area :text, class: 'form-control input-sm', placeholder: 'Место для вашего отзыва' %>
+      </div>
+        <%= f.submit "Отправить", class: "btn btn-success btn-sm" %>
+    <% end %> 
+
+    <h3 class="text-center">Отзывы</h3>
+    <% @comments.each do |comment| %>
+    <div class="col-md-12">
+     <b><%= comment.name %></b>
+     <small><i><%= comment.created_at.strftime("%d.%m.%Y, %H:%M") %></i></small>
+      <div class="thumbnail">
+      <b><%= comment.title %></b><br/>
+      <%= comment.text %><br/>
+      <%= link_to 'Destroy', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %> 
+    </div>
+      
+    </div>
+    
+    <% end %>
+  
+</div>

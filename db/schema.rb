@@ -11,17 +11,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220120507) do
+ActiveRecord::Schema.define(version: 20160222112807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "abouts", force: :cascade do |t|
+    t.string   "title"
+    t.string   "article"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "albums", force: :cascade do |t|
+    t.string   "title"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "categories", force: :cascade do |t|
+    t.string   "article"
     t.string   "title"
     t.string   "quantity"
     t.string   "price"
     t.string   "description"
     t.string   "image"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "categories", ["image"], name: "index_categories_on_image", using: :btree
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "title"
+    t.string   "text"
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "information", force: :cascade do |t|
+    t.string   "title"
+    t.string   "article"
+    t.text     "description"
+    t.string   "picture"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -34,5 +70,24 @@ ActiveRecord::Schema.define(version: 20160220120507) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end
+
+  create_table "photos", force: :cascade do |t|
+    t.string   "image"
+    t.integer  "album_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "avatar"
+  end
+
+  create_table "sliders", force: :cascade do |t|
+    t.string   "slide"
+    t.string   "more_url"
+    t.string   "article"
+    t.integer  "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "sliders", ["slide"], name: "index_sliders_on_slide", using: :btree
 
 end

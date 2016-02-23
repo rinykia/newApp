@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
+  resources :sliders
 
+  resources :albums do
+    resources :photos
+  end
+  resources :photos
+  resources :comments
+  resources :informations
   resources :options
   resources :categories do
     resources :options
   end
-  root 'categories#index'
+  root 'sliders#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -39,7 +39,7 @@ class OptionsController < ApplicationController
     
     respond_to do |format|
       if @option.update(option_params)
-        format.html { redirect_to @category, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to category_path(@option.category_id), notice: 'Comment was successfully updated.' }
         #format.json { render :show, status: :ok, location: @option}
         #format.js
       else
@@ -50,9 +50,10 @@ class OptionsController < ApplicationController
   end
 
   def destroy
+    @option = @category.options.find(params[:id])
     @option.destroy
     respond_to do |format|
-      format.html { redirect_to options_url, notice: 'Comment was successfully destroyed.' }
+      format.html { redirect_to category_path(@option.category_id), notice: 'Comment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

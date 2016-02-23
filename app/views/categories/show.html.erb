@@ -1,11 +1,13 @@
 <div class="container">  
+  <h3 class="text-center"><%= @category.article %></h3>
 
   <table class="table">
     <thead>
       <tr>
-        <th class="col-md-8"><%= @category.title %></th>
+        <th class="text-center col-md-8"><%= @category.title %></th>
         <th class="col-md-2"><%= @category.quantity %></th>
-        <th class="col-md-2"><%= @category.price %></th>
+        <th class="col-md-1"><%= @category.price %></th>
+        <th class="col-md-1">Действие</th>
       </tr>
     </thead>
     <tbody>
@@ -13,8 +15,11 @@
         <tr>
           <td><%= option.title %></td>
           <td><%= option.quantity %></td>
-          <td><%= option.price %><%= link_to 'Edit2', edit_category_option_path(@category, option) %> </td> 
-          
+          <td><%= option.price %></td> 
+          <td><%= link_to 'Редактировать', edit_category_option_path(@category, option) %>
+             <%= link_to 'Destroy', option, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+
         </tr>
       <% end %>
     </tbody>
@@ -30,6 +35,8 @@
   <%= link_to 'Edit', edit_category_path(@category) %> |
   <%= link_to 'Destroy', @category, method: :delete, data: { confirm: 'Are you sure?' } %> |
   <%= link_to 'Back', categories_path %>
+
+
   
  
      
