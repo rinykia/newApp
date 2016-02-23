@@ -50,7 +50,8 @@ class OptionsController < ApplicationController
   end
 
   def destroy
-    @option = @category.options.find(params[:id])
+    #@option = @category.options.find(params[:id])
+    @option = Option.find(params[:id])
     @option.destroy
     respond_to do |format|
       format.html { redirect_to category_path(@option.category_id), notice: 'Comment was successfully destroyed.' }

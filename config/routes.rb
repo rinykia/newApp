@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   resources :albums do
     resources :photos
   end
-  resources :photos
+  #resources :photos
   resources :comments
   resources :informations
-  resources :options
+  #resources :options
   resources :categories do
     resources :options
   end

@@ -17,7 +17,7 @@
           <td><%= option.quantity %></td>
           <td><%= option.price %></td> 
           <td><%= link_to 'Редактировать', edit_category_option_path(@category, option) %>
-             <%= link_to 'Destroy', option, method: :delete, data: { confirm: 'Are you sure?' } %>
+             <%= link_to 'Destroy', [@category, option], method: :delete, data: { confirm: 'Are you sure?' } %>
           </td>
 
         </tr>
