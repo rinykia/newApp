@@ -1,0 +1,17 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <div class="col-md-12">
+  <div class="text-uppercase text-center"><b><%= @message.title %></b></div><br/>
+  <%= image_tag(@message.picture, class: 'left') %>
+  <b><%= @message.article %></b>
+  <br/>
+  <br/>
+
+  <%= @message.description %>
+
+
+</div>
+
+  <%= link_to 'Edit', edit_message_path(@message) %> |
+  <%= link_to 'Back', messages_path %>
+</div>

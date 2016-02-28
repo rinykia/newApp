@@ -1,8 +1,9 @@
-<%= form_for([@category, @option]) do |f| %>       
-        <%= f.text_field :title %><br/> 
-        <%= f.text_field :quantity %><br/> 
-        <%= f.text_field :price %><br/> 
-        <%= f.hidden_field :category_id %><br/>      
-        <%= f.submit %>
-
-    <% end %>
+<div class="container">
+  <%= form_for([@category, @option]) do |f| %>       
+    <%= f.text_field :title, class: 'form-control' %><br/> 
+    <%= f.text_field :quantity, class: 'form-control' %><br/> 
+    <%= f.text_field :price, class: 'form-control' %><br/> 
+    <%= f.hidden_field :category_id %><br/>      
+    <%= f.submit 'Обновить', class: 'btn btn-success' %>
+  <% end %>
+</div>

@@ -1,11 +1,21 @@
 <div class="container">
   <% @categories.each do |category| %>
-    <div class="col-md-3 col-sm-6 col-xs-12 example2">    
-      <a href='/categories/<%= category.id %>'><img class="ex img-rounded" src="<%= category.image %>"></a>
-         <span class="text-center"><%= link_to category.title, category_path(category), class: "link" %></span>
-    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12 ">    
+      <a href='/categories/<%= category.id %>'><%= image_tag(category.image, class: "ex img-rounded") %></a><br/>
 
+        <% if current_user && (current_user.editor? || current_user.admin?) %> 
+          <%= link_to 'Edit', edit_category_path(category) %>
+        <% end %>
+
+        <% if current_user && current_user.admin? %> 
+          <%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+
+    </div>
+     
   <% end %>
+        <% if current_user && current_user.admin? %> 
+  <%= link_to 'Добавить категорию меню', new_category_path %>
+   <% end %>
 </div>
     
-  

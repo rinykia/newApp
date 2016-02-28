@@ -1,5 +1,7 @@
 class CategoriesController < ApplicationController
-
+  #before_action :require_user, only: [:index, :show]
+  before_action :require_editor, only: [:new, :create, :edit, :update]
+  before_action :require_admin, only: [:new, :create, :edit, :update, :destroy]
   def index
     @categories = Category.all
   end
@@ -66,7 +68,7 @@ class CategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.require(:category).permit(:title, :quantity, :price, :image)
+      params.require(:category).permit(:article, :title, :quantity, :price, :image)
     end
 end
 

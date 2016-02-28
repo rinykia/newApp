@@ -1,5 +1,6 @@
 class OptionsController < ApplicationController
-
+  before_action :require_editor, only: [:new, :create, :edit, :update]
+  before_action :require_admin, only: [:new, :create, :edit, :update, :destroy]
   def index
     @options = Option.all
   end
@@ -50,6 +51,11 @@ class OptionsController < ApplicationController
   end
 
   def destroy
+    #@option = @category.options.find(params[:id])
+    #@option = Option.find(params[:id])
+    #@option = @category.options.find(params[:id])
+    #@option = Option.find(params[:category_id])
+    #@category = Category.find(params[:category_id])
     #@option = @category.options.find(params[:id])
     @option = Option.find(params[:id])
     @option.destroy

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222112807) do
+ActiveRecord::Schema.define(version: 20160228172742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20160222112807) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "title"
-    t.string   "text"
+    t.text     "text"
     t.string   "name"
     t.string   "email"
     t.datetime "created_at", null: false
@@ -62,6 +62,19 @@ ActiveRecord::Schema.define(version: 20160222112807) do
     t.datetime "updated_at",  null: false
   end
 
+  add_index "information", ["picture"], name: "index_information_on_picture", using: :btree
+
+  create_table "messages", force: :cascade do |t|
+    t.string   "title"
+    t.string   "article"
+    t.text     "description"
+    t.string   "picture"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "messages", ["picture"], name: "index_messages_on_picture", using: :btree
+
   create_table "options", force: :cascade do |t|
     t.integer  "category_id"
     t.string   "title"
@@ -74,20 +87,40 @@ ActiveRecord::Schema.define(version: 20160222112807) do
   create_table "photos", force: :cascade do |t|
     t.string   "image"
     t.integer  "album_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "avatar"
+    t.boolean  "cover",      default: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "title"
+    t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "avatar"
   end
 
   create_table "sliders", force: :cascade do |t|
     t.string   "slide"
     t.string   "more_url"
-    t.string   "article"
+    t.text     "article"
     t.integer  "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_index "sliders", ["slide"], name: "index_sliders_on_slide", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "role"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
 end

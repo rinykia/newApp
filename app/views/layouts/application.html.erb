@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Restoran</title>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,7 +22,9 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-latest.min.js"></script>
+    <script src="//unslider.com/unslider.js"></script>
   </head>
   <body>
   <nav class="navbar navbar-default">
@@ -52,15 +54,26 @@
             <% end %>
           </ul>
         </li>
-        <li><%= link_to "Отзывы", comments_path(@comment) %></li>
-        <li><%= link_to "Новости", informations_path(@information) %></li>
+        <li><%= link_to "О нас", abouts_path(@about) %></li>
+        <li><%= link_to "Новости", messages_path(@message) %></li>
         <li><%= link_to "Галерея", albums_path(@album) %></li>
+        <li><%= link_to "Отзывы", reviews_path(@review) %></li>
         <li><%= link_to "Добавить Сайды", sliders_path(@slider) %></li>
         
       </ul>
      
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
+        <% if current_user %> 
+  
+    <li><a><%= current_user.email %></a></li> 
+    <li><%= link_to "Log out", logout_path, method: "delete" %></li> 
+  
+<% else %> 
+ 
+    <li><%= link_to "Login", 'login' %></li> 
+    <li><%= link_to "Signup", 'signup' %></li> 
+  
+<% end %>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -76,6 +89,7 @@
   </div><!-- /.container-fluid -->
 </nav>
     <%= yield %>
+<footer class="container">heeloo</footer> 
     
   </body>
 </html>

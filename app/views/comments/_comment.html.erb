@@ -1,0 +1,13 @@
+<%= div_for comment do %>
+      <b><%= comment.name %></b>
+      <small><i><%= comment.created_at.strftime("%d.%m.%Y, %H:%M") %></i></small>
+      <div class="thumbnail">
+        <b><%= comment.title %></b><br/>
+        <%= comment.text %><br/>
+        <% if current_user && (current_user.editor? || current_user.admin?) %> 
+          <%= link_to 'Удалить', comment_path(comment), method: :delete, data: { confirm: 'Удалить?' } %>
+        <% end %> 
+      </div>
+    <% end %>
+
+  

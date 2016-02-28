@@ -1,5 +1,9 @@
 class PhotosController < ApplicationController
   before_filter :set_album
+  before_action :require_editor, only: [:new, :create, :edit, :update]
+  before_action :require_admin, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_photo, only: [:set_cover]
+
   # GET /photos
   # GET /photos.json
   def index
@@ -64,6 +68,13 @@ class PhotosController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def set_cover
+    notice = SetCover.new(@photo).main
+    respond_to do |format|
+      format.html { redirect_to :back, notice: notice }
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -71,7 +82,8 @@ class PhotosController < ApplicationController
       @photo = Photo.find(params[:id])
     end
     def set_album
-      @album = Album.find params[:album_id]
+      @album = Album.find(params[:album_id])
+      
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

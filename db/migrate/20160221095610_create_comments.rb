@@ -2,7 +2,7 @@ class CreateComments < ActiveRecord::Migration
   def change
     create_table :comments do |t|
       t.string :title
-      t.string :text
+      t.text :text
       t.string :name
       t.string :email
 

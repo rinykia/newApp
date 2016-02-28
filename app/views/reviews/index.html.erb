@@ -1,0 +1,25 @@
+<div class="container">
+<h3 class="text-center">Добавить отзыв</h3>
+
+<%= render 'form' %>
+
+<h3 class="text-center">Отзывы</h3>
+    <% @reviews.each do |review| %>
+    <div class="thumbnail">
+       <b><%= review.name %></b>
+        <small><i><%= review.created_at.strftime("%d.%m.%Y, %H:%M") %></i></small><br/>
+        <b><%= review.title %></b><br/>
+        <%= review.body %><br/>
+        <% if current_user && current_user.admin? %> 
+          <%= link_to 'Show', review %>
+          <%= link_to 'Edit', edit_review_path(review) %>
+          <%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+    </div>
+    <% end %>
+    <p id="notice"><%= notice %></p>
+
+
+<br>
+
+</div>

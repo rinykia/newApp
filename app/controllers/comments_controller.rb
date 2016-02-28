@@ -1,9 +1,12 @@
 class CommentsController < ApplicationController
-
+  #before_action :require_user, only: [:index,:show, :new, :create]
+  #before_action :require_editor, only: [:new, :create, :edit, :update]
+  #before_action :require_admin, only: [:destroy]
   def index
     @comment = Comment.new
-     @categories = Category.all
+    @categories = Category.all
     @comments = Comment.all.reverse
+    @comment = Comment.new(params[:comment])
   end
   def show
      @categories = Category.all
@@ -23,6 +26,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @comment = Comment.find(params[:id])
     @comment.destroy
     respond_to do |format|
       format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }

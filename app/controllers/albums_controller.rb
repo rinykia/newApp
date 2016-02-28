@@ -1,6 +1,8 @@
 class AlbumsController < ApplicationController
   before_action :set_album, only: [:show, :edit, :update, :destroy]
 
+  before_action :require_editor, only: [:new, :create, :edit, :update]
+  before_action :require_admin, only: [:new, :create, :edit, :update, :destroy]
   def index
     @categories = Category.all
     @albums = Album.all
@@ -8,7 +10,6 @@ class AlbumsController < ApplicationController
 
   def show
     @categories = Category.all
-    @album = Album.find(params[:id])
   end
 
   def new
@@ -59,7 +60,8 @@ class AlbumsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_album
-      @album = Album.find(params[:id])
+      #@album = Album.find(params[:id])
+      @album = AlbumDecorator.decorate(Album.find(params[:id]))
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

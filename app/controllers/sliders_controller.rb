@@ -1,9 +1,10 @@
 class SlidersController < ApplicationController
  # before_action :set_album, only: [:show, :edit, :update, :destroy]
-
+  before_action :require_editor, only: [:new, :create, :edit, :update]
+  before_action :require_admin, only: [:new, :create, :edit, :update, :destroy]
   def index
     @categories = Category.all
-    @sliders = Slider.all
+    
   end
 
   def show
@@ -36,6 +37,7 @@ class SlidersController < ApplicationController
   end
 
   def update
+    @slider = Slider.find(params[:id])
     respond_to do |format|
       if @slider.update(slider_params)
         format.html { redirect_to @slider, notice: 'Slider was successfully updated.' }

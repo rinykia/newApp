@@ -1,17 +1,29 @@
 Rails.application.routes.draw do
+  resources :reviews
+  resources :messages
+  resources :abouts
   resources :sliders
 
   resources :albums do
-    resources :photos
+    resources :photos do
+      get 'set_cover', on: :member
+    end  
   end
   #resources :photos
-  resources :comments
-  resources :informations
   #resources :options
   resources :categories do
     resources :options
   end
-  root 'sliders#index'
+  root to: 'sliders#index'
+  resources :users
+  get 'signup'  => 'users#new'
+  get '/login' => 'sessions#new'  
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy' 
+ 
+  
+
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

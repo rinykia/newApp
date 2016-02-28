@@ -1,44 +1,52 @@
 <div class="container">  
   <h3 class="text-center"><%= @category.article %></h3>
-
+  <div class="text-center">
+    <img class="image1" src="/assets/podnos3.png">
+  </div>
   <table class="table">
     <thead>
       <tr>
-        <th class="text-center col-md-8"><%= @category.title %></th>
+        <th class="size text-center col-md-8"><%= @category.title %></th>
         <th class="col-md-2"><%= @category.quantity %></th>
         <th class="col-md-1"><%= @category.price %></th>
-        <th class="col-md-1">Действие</th>
+        <% if current_user && (current_user.editor? || current_user.admin?) %> 
+          <th class="col-md-1">Действие</th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
       <% @category.options.each do |option| %>
         <tr>
-          <td><%= option.title %></td>
-          <td><%= option.quantity %></td>
-          <td><%= option.price %></td> 
-          <td><%= link_to 'Редактировать', edit_category_option_path(@category, option) %>
-             <%= link_to 'Destroy', [@category, option], method: :delete, data: { confirm: 'Are you sure?' } %>
+          <td class="text-center"><b><%= option.title %></b></td>
+          <td><b><%= option.quantity %></b></td>
+          <td><b><%= number_to_currency(option.price, unit: "", separator: ",", delimiter: "") %></b></td>          
+          <td>
+            <% if current_user && (current_user.editor? || current_user.admin?) %> 
+              <%= link_to 'Редактировать', edit_category_option_path(@category, option) %>
+              <%= link_to 'Удалить', [@category, option], method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
           </td>
-
         </tr>
       <% end %>
     </tbody>
   </table>
-
-  <%= form_for([@category, @category.options.build]) do |f| %>
-    <%= f.text_field :title %>
-    <%= f.text_field :quantity %>
-    <%= f.text_field :price %>
-    <%= f.submit %>
-  <% end %>
+  <br/>
+  <% if current_user && (current_user.editor? || current_user.admin?) %> 
+    <%= form_for([@category, @category.options.build]) do |f| %>
+    <%= f.text_field :title, class: 'form-control', placeholder: 'Название блюда(описание)' %>
+    <%= f.text_field :quantity, class: 'form-control', placeholder: 'Количество(г,мл), формат(000/000/000)' %>
+    <%= f.text_field :price, class: 'form-control', placeholder: 'Цена' %>
+    <%= f.submit 'Добавить в меню', class: 'btn btn-success' %></td>
+   
+    <% end %>
 
   <%= link_to 'Edit', edit_category_path(@category) %> |
   <%= link_to 'Destroy', @category, method: :delete, data: { confirm: 'Are you sure?' } %> |
-  <%= link_to 'Back', categories_path %>
-
-
   
- 
+  <% end %>
+
+  <%= link_to 'Back', categories_path %>
+</div>
      
 
 

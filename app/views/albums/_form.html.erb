@@ -12,10 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br>
+    Название<br>
     <%= f.text_field :title %>
   </div>
+  
+  <div class="field">
+    Обложка альбома<br>
+    <%= f.text_field :image %>
+  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>
-<% end %>
+<% end %> 

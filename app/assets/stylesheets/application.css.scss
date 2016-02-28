@@ -5,42 +5,42 @@ small{
   color: grey;
 }
 h3{
-  color: #8b8989;
+  color: #898989;
+}
+.size{
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:18px;
+}
+.sizeimg{
+  width:200px;
+  height:200px;
 }
 
-.example2 {
-    display:inline-block;   
-    position:relative;
-
-    margin-right: -10px;
- 
-}
-.example2 span {
-    display:inline-block;
-    position:absolute;
-    top:30%;   
-    left:30%;
-     
-    
-    color:#FFF;
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:20px; 
-     
-   
-    background-color:rgba(0,0,0,.4);
-    padding:1% 7%;
-    border-radius: 10px;
-}
-
-.link {
-  color: white;
-}
-.link:hover{
-  text-decoration: none;
-  color: black;
-}
 .ex{
   width: 265px;
   height: 150px;
   margin-top:10px;
+}
+
+.ex1{
+  width: 370px;
+  height: 300px;
+
+}
+.left{
+  float:left;
+  font-size:18px;
+}
+.desc{
+  font-size:18px;
+}
+
+#myCarousel .nav a small {
+    display:block;
+}
+#myCarousel .nav {
+  background:#eee;
+}
+#myCarousel .nav a {
+    border-radius:0px;
 }

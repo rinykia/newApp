@@ -1,0 +1,17 @@
+<div class="container">
+  <h4>Добавить картинку</h4>
+    <%= form_for([@album, @album.photos.build]) do |f| %> 
+      <%= f.file_field :avatar  %>  
+      <%= f.hidden_field :album_id %><br/>
+      <%= f.submit 'Create Image', :class => 'btn btn-sm btn-primary' %>
+    <% end %>
+  <br/>
+  <%= render 'form' %>
+
+
+
+
+
+    <%= link_to 'Назад', @album %> |
+    <%= link_to 'Все альбомы', albums_path(@album) %>
+  </div>
